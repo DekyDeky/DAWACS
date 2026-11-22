@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b4mirnmmqc5l0"]
+
+[ext_resource type="Texture2D" uid="uid://cs1ltjigqbg3y" path="res://sprites/minigames/attack/target.png" id="1_1mr85"]
+[ext_resource type="Script" uid="uid://ormugjb3q5d4" path="res://scripts/combat/minigames/attack/target.gd" id="1_4puyr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
+radius = 67.00746
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57qmd"]
+
+[node name="target" type="Node2D" unique_id=1524743154]
+script = ExtResource("1_4puyr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2102965621]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_1mr85")
+
+[node name="TargetCollision" type="Area2D" parent="." unique_id=131426242]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetCollision" unique_id=1726592768]
+shape = SubResource("CircleShape2D_yf5fn")
+
+[node name="CenterCollision" type="Area2D" parent="." unique_id=1885878923]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterCollision" unique_id=1077672379]
+shape = SubResource("CircleShape2D_57qmd")
+
+[node name="Timer" type="Timer" parent="." unique_id=1844028408]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="input_event" from="TargetCollision" to="." method="_on_target_collision_input_event"]
+[connection signal="input_event" from="CenterCollision" to="." method="_on_center_collision_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

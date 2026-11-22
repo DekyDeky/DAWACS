@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dgts437dsw670"]
+
+[ext_resource type="Script" uid="uid://b3aptsms5rxl4" path="res://scripts/enemy/enemy.gd" id="1_gwbwg"]
+[ext_resource type="Resource" uid="uid://baeggh21rm3bc" path="res://resources/enemy_placeholder.tres" id="2_d83f0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yf5fn"]
+radius = 21.0
+height = 66.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qvtbs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(54, 49)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwbwg"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
+radius = 150.0
+
+[node name="enemy" type="CharacterBody2D" unique_id=823319220 groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_gwbwg")
+resource = ExtResource("2_d83f0")
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=1018083562]
+shape = SubResource("CapsuleShape2D_yf5fn")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=677111592]
+unique_name_in_owner = true
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_qvtbs")
+flip_h = true
+
+[node name="Ataque" type="Area2D" parent="." unique_id=1499698625]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ataque" unique_id=513660499]
+position = Vector2(17, 2.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1936918258 groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2006876109]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_gwbwg")
+
+[node name="enter_area" type="Area2D" parent="." unique_id=1384501480]
+
+[node name="visao" type="CollisionPolygon2D" parent="enter_area" unique_id=1754211795]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-1, 4, 154, -112, 154, 97)
+
+[node name="exit_area" type="Area2D" parent="." unique_id=1058177756]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_area" unique_id=1378412180]
+shape = SubResource("CircleShape2D_yf5fn")
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="enter_area" to="." method="_on_enter_area_body_entered"]
+[connection signal="body_exited" from="exit_area" to="." method="_on_exit_area_body_exited"]
