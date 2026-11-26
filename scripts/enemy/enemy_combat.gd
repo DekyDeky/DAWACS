@@ -43,16 +43,20 @@ func switch_state(state_name: String) -> void:
 func _physics_process(delta: float) -> void:
 	active_state.physics_update(delta)
 	
-func reduceHP(damage : float) -> void:
+func reduceHP(damage : float) -> bool:
+	var killedIt = false
 	currentHP -= damage
-	if(currentHP < 0):
+	
+	if(currentHP <= 0):
 		currentHP = 0
+		killedIt = true
 		
 	var lifeBarProgress = (currentHP / resource.max_health) * 100
 	 	
 	lifeBar.value = lifeBarProgress
 	lifeBarLabel.text = (str(currentHP) + "/" + str(resource.max_health))
 	
+	return killedIt
 	
 func showLabel(damage: float) -> void:
 	var newMultiplierLabel = multiplierLabel.instantiate() as Label

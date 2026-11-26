@@ -28,7 +28,7 @@ func _ready() -> void:
 	print(enemyDamage)
 	
 	if(GlobalCombat.playerHaveAdvantage):
-		GlobalCombat.attackMultiplier = 2.0
+		GlobalCombat.attackMultiplier = 0.5
 	else:
 		var initialDamage = round(rng.randf_range(encounter.damage[0], encounter.damage[1]))
 		playerCurrentHP -= initialDamage
@@ -45,6 +45,8 @@ func _ready() -> void:
 	playerStats.get_node("Defense").text = ("Defense: " + str(playerCurrentDefense))
 	
 	print(center)
+	
+
 
 func _on_btn_attack_pressed() -> void:
 	$UI.hide()
@@ -53,8 +55,13 @@ func _on_btn_attack_pressed() -> void:
 	await newMinimage.minigameEnded
 	$UI.show()
 	
-	var damage = GlobalPlayer.player_damage * GlobalCombat.attackMultiplier
-	enemy[0].reduceHP(damage)
+	var damage = round(GlobalPlayer.player_damage * GlobalCombat.attackMultiplier)
+	var killedIt = enemy[0].reduceHP(damage)
 	enemy[0].showLabel(damage)
+	
+	GlobalCombat.attackMultiplier = 0.0
+	
+	if ( killedIt ):
+		print("Matouuuu")
 	
 	

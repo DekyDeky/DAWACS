@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ccs0i2yk7arcb"]
+
+[ext_resource type="Script" uid="uid://c6xxxpl4kx0pq" path="res://scripts/combat/minigames/dodge/heart.gd" id="1_ipi8n"]
+[ext_resource type="Texture2D" uid="uid://xooaqbgsbf3e" path="res://sprites/minigames/doge/heart.png" id="1_xey81"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 5.414794
+
+[node name="Heart" type="Node2D" unique_id=1769193023]
+script = ExtResource("1_ipi8n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=190591190]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_xey81")
+
+[node name="heart_area" type="Area2D" parent="." unique_id=610433600]
+
+[node name="heart_collision" type="CollisionShape2D" parent="heart_area" unique_id=448088896]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_g4v7s")
