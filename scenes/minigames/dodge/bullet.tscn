@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dokw0r1n3p27l"]
+
+[ext_resource type="Script" uid="uid://34apilsxahg6" path="res://scenes/minigames/dodge/shoot.gd" id="1_a6xgp"]
+[ext_resource type="Texture2D" uid="uid://bkjhopdrxtv27" path="res://sprites/minigames/doge/shoot.png" id="2_b6eky"]
+
+[node name="Shoot" type="Node2D" unique_id=1810938026]
+scale = Vector2(3, 4)
+script = ExtResource("1_a6xgp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1784503055]
+texture = ExtResource("2_b6eky")

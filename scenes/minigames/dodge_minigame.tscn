@@ -35,3 +35,7 @@ mouse_filter = 2
 
 [node name="Heart" parent="Control/Panel" unique_id=1769193023 instance=ExtResource("2_kiw05")]
 position = Vector2(480, 486)
+
+[node name="CreateObjectsTimer" type="Timer" parent="." unique_id=707962561]
+wait_time = 0.75
+autostart = true
